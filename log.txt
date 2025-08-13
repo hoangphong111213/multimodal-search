@@ -1,0 +1,71 @@
+Loading CLIP model...
+Loading Flickr30k dataset for image access...
+Loading embeddings and metadata...
+Loaded 31014 images with 512D embeddings
+Building FAISS index...
+FAISS index built with 31014 vectors
+
+==================================================
+TESTING BASIC SEARCH
+==================================================
+
+Query: 'a dog running in the park'
+  1. File: image_4615.jpg - Score: 0.361 - The brown dog is walking along a grassy path with its tongue out.
+  2. File: image_14572.jpg - Score: 0.351 - A golden dog is running across the grass chasing a white toy on the ground.
+  3. File: image_30772.jpg - Score: 0.341 - A black and white dog runs on a dry, yellow field of grass.
+  4. File: image_7079.jpg - Score: 0.341 - A little boy and a dog run down a hill, behind them, a boy on a mini cycle and a shouting family.
+  5. File: image_13456.jpg - Score: 0.338 - A brown and white dog is jumping up to catch a ball in the park.
+
+Query: 'people sitting on a beach'
+  1. File: image_3471.jpg - Score: 0.328 - Two people sit in beach chairs with their child in front of them as waves come crashing in on a very sandy beach.
+  2. File: image_682.jpg - Score: 0.317 - An asian family is picnicking at the beach while others play in the water.
+  3. File: image_17066.jpg - Score: 0.315 - There are people sitting down on the ground in front of a gray beach.
+  4. File: image_16553.jpg - Score: 0.314 - A group of men and women in swimwear sit on a beach in yoga poses.
+  5. File: image_15327.jpg - Score: 0.314 - There are many people sitting or standing on sand, and there is a tractor.
+
+Query: 'a red car on the street'
+  1. File: image_23979.jpg - Score: 0.296 - Two people in red are riding their bicycles down a street next to a few cars.
+  2. File: image_6599.jpg - Score: 0.292 - The back of two women looking down a street that has a pizzeria, a restaurant, several people, a black car, and two red cars.
+  3. File: image_19953.jpg - Score: 0.289 - A damaged red car with the back glass completely taped over and a smashed fender sits parked on a public street.
+  4. File: image_2377.jpg - Score: 0.288 - Two children are riding in a red play vehicle at a real gas station.
+  5. File: image_9080.jpg - Score: 0.288 - An elderly person in bright orange overalls is standing along side a street.
+
+Query: 'children playing football'
+  1. File: image_16703.jpg - Score: 0.356 - Three little boys on the beach watching another boy kick a ball.
+  2. File: image_13596.jpg - Score: 0.349 - Four boys playing a game with a soccer ball in front of a large set of ornate doors.
+  3. File: image_30852.jpg - Score: 0.344 - Similarly dressed children are playing soccer in a rocky field in front of a building.
+  4. File: image_4938.jpg - Score: 0.339 - The little girl sitting by the tree is looking away from the little boy kicking a soccer ball.
+  5. File: image_25689.jpg - Score: 0.337 - A barefoot child wearing a blue shirt and a child wearing sandals with a red shirt both attempting to grab a soccer ball falling from the air.
+
+==================================================
+TRAINING RE-RANKER
+==================================================
+Creating training data for re-ranker...
+Created 800 training pairs (200.0 positive, 600.0 negative)
+Training re-ranker...
+Epoch 10/40, Loss: 0.4867
+Epoch 20/40, Loss: 0.0485
+Epoch 30/40, Loss: 0.0043
+Epoch 40/40, Loss: 0.0010
+
+==================================================
+TESTING WITH RE-RANKING
+==================================================
+
+Original top 5 results for: 'a dog running in the park'
+  1. CLIP: 0.361, File: image_4615.jpg - ReRank: 0.276 - The brown dog is walking along a grassy path with its tongue out.
+  2. CLIP: 0.351, File: image_14572.jpg - ReRank: 0.981 - A golden dog is running across the grass chasing a white toy on the ground.
+  3. CLIP: 0.341, File: image_30772.jpg - ReRank: 0.994 - A black and white dog runs on a dry, yellow field of grass.
+  4. CLIP: 0.341, File: image_7079.jpg - ReRank: 0.859 - A little boy and a dog run down a hill, behind them, a boy on a mini cycle and a shouting family.
+  5. CLIP: 0.338, File: image_13456.jpg - ReRank: 0.788 - A brown and white dog is jumping up to catch a ball in the park.
+
+Re-ranked top 5 results:
+  1. CLIP: 0.328, File: image_22059.jpg - ReRank: 1.000 - A gray dog jumps in the air to catch a Frisbee in a grassy park
+  2. CLIP: 0.332, File: image_18221.jpg - ReRank: 1.000 - A small dog with a blue color fetching a yellow ball
+  3. CLIP: 0.341, File: image_30772.jpg - ReRank: 0.994 - A black and white dog runs on a dry, yellow field of grass.
+  4. CLIP: 0.351, File: image_14572.jpg - ReRank: 0.981 - A golden dog is running across the grass chasing a white toy on the ground.
+  5. CLIP: 0.336, File: image_1805.jpg - ReRank: 0.889 - A black dog runs on green grass with its mouth open.
+Re-ranker saved to reranker.pth
+
+Saved top 5 images for original ranking in 'test/original/'
+Saved top 5 images for reranked results in 'test/rerank/'

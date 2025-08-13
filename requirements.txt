@@ -1,0 +1,10 @@
+torch
+torchvision
+git+https://github.com/openai/CLIP.git
+datasets==3.6.0
+faiss-gpu
+pillow
+numpy
+tqdm
+streamlit
+scikit-learn

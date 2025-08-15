@@ -38,8 +38,8 @@ python search_engine.py     # Run search engine
 
 | Method | Top Result | CLIP Score | ReRank Score |
 |--------|------------|------------|--------------|
-| Original | "brown dog walking along grassy path" | 0.361 | 0.276 |
-| Re-ranked | "gray dog jumps in air to catch Frisbee" | 0.328 | 1.000 |
+| Original | "The brown dog is walking along a grassy path with its tongue out." | 0.361 | 0.992 |
+| Re-ranked | "A large furry brown dog is walking with a leash in his mouth." | 0.335 | 1.000 |
 
 The re-ranker identifies more relevant results by learning semantic relationships beyond CLIP similarity.
 

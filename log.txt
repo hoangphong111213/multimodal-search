@@ -38,33 +38,60 @@ Query: 'children playing football'
   5. File: image_25689.jpg - Score: 0.337 - A barefoot child wearing a blue shirt and a child wearing sandals with a red shirt both attempting to grab a soccer ball falling from the air.
 
 ==================================================
-TRAINING RE-RANKER
+TRAINING RE-RANKER WITH VALIDATION
 ==================================================
-Creating training data for re-ranker...
-Created 800 training pairs (200.0 positive, 600.0 negative)
-Training re-ranker...
-Epoch 10/40, Loss: 0.4867
-Epoch 20/40, Loss: 0.0485
-Epoch 30/40, Loss: 0.0043
-Epoch 40/40, Loss: 0.0010
+Creating training, validation and test data for re-ranker...
+Data split: 18000 train, 1000 val, 1000 test queries
+Training: 72000 pairs (18000.0 positive)
+Validation: 4000 pairs (1000.0 positive)
+Test: 3999 pairs (1000.0 positive)
+Training re-ranker with validation...
+Epoch 5/30
+  Train - Loss: 0.0638, Acc: 0.9791, F1: 0.9589
+  Val   - Loss: 0.1336, Acc: 0.9473, F1: 0.8979
+Epoch 10/30
+  Train - Loss: 0.0292, Acc: 0.9918, F1: 0.9837
+  Val   - Loss: 0.1290, Acc: 0.9530, F1: 0.9057
+Epoch 15/30
+  Train - Loss: 0.0160, Acc: 0.9964, F1: 0.9929
+  Val   - Loss: 0.1468, Acc: 0.9490, F1: 0.8960
+Epoch 20/30
+  Train - Loss: 0.0123, Acc: 0.9972, F1: 0.9944
+  Val   - Loss: 0.1578, Acc: 0.9490, F1: 0.8981
+Epoch 25/30
+  Train - Loss: 0.0073, Acc: 0.9989, F1: 0.9978
+  Val   - Loss: 0.1651, Acc: 0.9485, F1: 0.8967
+Epoch 30/30
+  Train - Loss: 0.0062, Acc: 0.9987, F1: 0.9974
+  Val   - Loss: 0.1705, Acc: 0.9507, F1: 0.9014
+
+Best validation F1: 0.9057
+
+Evaluating on test set...
+Test Results:
+  Loss: 0.1637
+  Accuracy: 0.9537
+  Precision: 0.9095
+  Recall: 0.9050
+  F1-Score: 0.9073
 
 ==================================================
 TESTING WITH RE-RANKING
 ==================================================
 
 Original top 5 results for: 'a dog running in the park'
-  1. CLIP: 0.361, File: image_4615.jpg - ReRank: 0.276 - The brown dog is walking along a grassy path with its tongue out.
-  2. CLIP: 0.351, File: image_14572.jpg - ReRank: 0.981 - A golden dog is running across the grass chasing a white toy on the ground.
-  3. CLIP: 0.341, File: image_30772.jpg - ReRank: 0.994 - A black and white dog runs on a dry, yellow field of grass.
-  4. CLIP: 0.341, File: image_7079.jpg - ReRank: 0.859 - A little boy and a dog run down a hill, behind them, a boy on a mini cycle and a shouting family.
-  5. CLIP: 0.338, File: image_13456.jpg - ReRank: 0.788 - A brown and white dog is jumping up to catch a ball in the park.
+  1. CLIP: 0.3608, File: image_4615.jpg - ReRank: 0.9915 - The brown dog is walking along a grassy path with its tongue out.
+  2. CLIP: 0.3509, File: image_14572.jpg - ReRank: 0.9981 - A golden dog is running across the grass chasing a white toy on the ground.
+  3. CLIP: 0.3414, File: image_30772.jpg - ReRank: 0.9753 - A black and white dog runs on a dry, yellow field of grass.
+  4. CLIP: 0.3407, File: image_7079.jpg - ReRank: 0.8076 - A little boy and a dog run down a hill, behind them, a boy on a mini cycle and a shouting family.
+  5. CLIP: 0.3382, File: image_13456.jpg - ReRank: 0.9980 - A brown and white dog is jumping up to catch a ball in the park.
 
 Re-ranked top 5 results:
-  1. CLIP: 0.328, File: image_22059.jpg - ReRank: 1.000 - A gray dog jumps in the air to catch a Frisbee in a grassy park
-  2. CLIP: 0.332, File: image_18221.jpg - ReRank: 1.000 - A small dog with a blue color fetching a yellow ball
-  3. CLIP: 0.341, File: image_30772.jpg - ReRank: 0.994 - A black and white dog runs on a dry, yellow field of grass.
-  4. CLIP: 0.351, File: image_14572.jpg - ReRank: 0.981 - A golden dog is running across the grass chasing a white toy on the ground.
-  5. CLIP: 0.336, File: image_1805.jpg - ReRank: 0.889 - A black dog runs on green grass with its mouth open.
+  1. CLIP: 0.3350, File: image_20079.jpg - ReRank: 0.9996 - A large furry brown dog is walking with a leash in his mouth.
+  2. CLIP: 0.3357, File: image_1805.jpg - ReRank: 0.9994 - A black dog runs on green grass with its mouth open.
+  3. CLIP: 0.3509, File: image_14572.jpg - ReRank: 0.9981 - A golden dog is running across the grass chasing a white toy on the ground.
+  4. CLIP: 0.3382, File: image_13456.jpg - ReRank: 0.9980 - A brown and white dog is jumping up to catch a ball in the park.
+  5. CLIP: 0.3340, File: image_1157.jpg - ReRank: 0.9980 - A yellow dog running through a grassy area carrying something small in its mouth.
 Re-ranker saved to reranker.pth
 
 Saved top 5 images for original ranking in 'test/original/'

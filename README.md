@@ -48,5 +48,5 @@ The re-ranker identifies more relevant results by learning semantic relationship
 - **Dataset**: 31,014 Flickr30k test images
 - **Embedding Size**: 512D CLIP features  
 - **Search Speed**: Near real-time with FAISS indexing
-- **Re-ranker Training**: 800 pairs (200 positive, 600 negative)
+- **Re-ranker Training**: 1800 pairs (450 positive, 1350 negative)
 - **Final Loss**: 0.0010 after 40 epochs
